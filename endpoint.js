@@ -13,7 +13,7 @@ app.listen(PORT, () => {
   console.log("Server Listening on PORT:", PORT);
 });
 
-app.post("/rapla-to-json", async (req, res) => {
+app.post("/rapla", async (req, res) => {
     let url = req.body.url;
     let jsonevents;
     parser.fetchWeeks(
