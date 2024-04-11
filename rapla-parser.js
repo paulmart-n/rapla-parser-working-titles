@@ -5,7 +5,7 @@ const { JSDOM } = jsdom;
 
 function putProperty(tempEvent, values, label, i) {
   switch (label.innerHTML) {
-  case 'Veranstaltungsname:':
+  case 'Titel:':
     tempEvent.title = values[i].innerHTML;
     break;
   case 'Personen:':
