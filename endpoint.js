@@ -15,11 +15,13 @@ app.listen(PORT, () => {
 
 app.post("/rapla", async (req, res) => {
     let url = req.body.url;
+    let start = req.body.start;
+    let end = req.body.end;
     let jsonevents;
     parser.fetchWeeks(
       url,
-      moment("2024-01-01"), // start date
-      moment("2024-12-01"), // end date
+      moment(end), // start date
+      moment(start), // end date
       (events) => {
         jsonevents = JSON.stringify(events);
         res.send(jsonevents);
