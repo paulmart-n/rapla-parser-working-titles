@@ -20,8 +20,8 @@ app.post("/rapla", async (req, res) => {
     let jsonevents;
     parser.fetchWeeks(
       url,
-      moment(end), // start date
-      moment(start), // end date
+      moment(start), // start date
+      moment(end), // end date
       (events) => {
         jsonevents = JSON.stringify(events);
         res.send(jsonevents);
