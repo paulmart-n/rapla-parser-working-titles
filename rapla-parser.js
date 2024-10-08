@@ -20,11 +20,12 @@ function putProperty(tempEvent, values, label, i) {
 /* Applies hours and minutes (e.g 08:00) from srcMoment to a clone */
 function applyMoment(srcMoment, time) {
   let mmt = srcMoment.clone();
-  let split = time.split(':');
+  if (typeof time !== 'undefined'){
+       let split = time.split(':');
 
-  mmt.set('hours', parseInt(split[0]));
-  mmt.set('minutes', parseInt(split[1]));
-
+       mmt.set('hours', parseInt(split[0]));
+       mmt.set('minutes', parseInt(split[1]));
+  }
   return mmt;
 }
 
@@ -55,12 +56,15 @@ function addEvent(events, tempMoment, anchorElement) {
 
   // Write the time
   putDates(tempEvent, tempMoment, anchorElement);
-
   // Write the details
   let labels = anchorElement.querySelectorAll('span.tooltip table.infotable tbody tr td.label');
   let values = anchorElement.querySelectorAll('span.tooltip table.infotable tbody tr td.value');
   labels.forEach((label, i) => putProperty(tempEvent, values, label, i));
-
+  let uidstr = (tempEvent.startDate.slice(0, 5) + tempEvent.title).split('')
+    .map(c => c.charCodeAt(0).toString(16).padStart(2, '0'))
+    .join('')
+    .slice(0,35);
+  tempEvent.UID = uidstr;
   events.push(tempEvent);
 }
 
